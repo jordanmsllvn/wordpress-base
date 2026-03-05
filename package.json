@@ -1,0 +1,20 @@
+{
+  "name": "headless-wordpress-cms",
+  "private": true,
+  "scripts": {
+    "wp:start": "cd backend && wp-env start",
+    "wp:stop": "cd backend && wp-env stop",
+    "wp:destroy": "cd backend && wp-env destroy",
+    "wp:cli": "cd backend && wp-env run cli wp",
+    "wp:plugin:install": "cd backend && WP_CLI=\"npx wp-env run cli wp\" ./install_plugins.sh",
+    "wp:plugins": " ./scripts/plugins.sh",
+    "wp:plugin:list": "cd backend && wp-env run cli wp plugin list",
+    "wp:db:reset": "cd backend && wp-env run cli wp db reset --yes",
+    "wp:page:create": "cd backend && wp-env run cli wp post create --post_type=page --post_title='Home' --post_status=publish",
+    "wp:migrate": "cd backend && wp-env run cli wp site migrate",
+    "setup": "npm run wp:start && npm run wp:plugin:install"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^10.0.0"
+  }
+}

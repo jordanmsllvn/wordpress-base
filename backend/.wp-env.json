@@ -1,0 +1,14 @@
+{
+  "core": "WordPress/WordPress",
+  "mappings": {
+    "wp-content/plugins": "./wp-content/plugins",
+    "wp-content/mu-plugins": "./wp-content/mu-plugins",
+    "wp-content/themes": "./wp-content/themes",
+    "wp-content/uploads": "./wp-content/uploads"
+  },
+  "config": {
+    "WP_DEBUG": true,
+    "DISALLOW_FILE_MODS": true,
+    "DISALLOW_FILE_EDIT": true
+  }
+}
