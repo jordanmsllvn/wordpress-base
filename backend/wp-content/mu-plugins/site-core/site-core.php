@@ -18,6 +18,67 @@ if (! defined('SITE_CORE_DIR')) {
     define('SITE_CORE_DIR', __DIR__);
 }
 
+/**
+ * Theme hard-lock for frontend requests.
+ */
+function site_core_forced_frontend_theme_slug(): string
+{
+    return 'headless';
+}
+
+add_action(
+    'init',
+    function (): void {
+        if (is_admin()) {
+            return;
+        }
+
+        $forced_theme = site_core_forced_frontend_theme_slug();
+        $theme         = wp_get_theme($forced_theme);
+
+        if (! $theme->exists()) {
+            return;
+        }
+
+        add_filter(
+            'pre_option_template',
+            function ($pre_option) use ($forced_theme) {
+                if (is_admin()) {
+                    return $pre_option;
+                }
+
+                return $forced_theme;
+            },
+            1
+        );
+
+        add_filter(
+            'pre_option_stylesheet',
+            function ($pre_option) use ($forced_theme) {
+                if (is_admin()) {
+                    return $pre_option;
+                }
+
+                return $forced_theme;
+            },
+            1
+        );
+
+        add_filter(
+            'pre_option_current_theme',
+            function ($pre_option) use ($theme) {
+                if (is_admin()) {
+                    return $pre_option;
+                }
+
+                return (string) $theme->get('Name');
+            },
+            1
+        );
+    },
+    0
+);
+
 
 
 /**
@@ -39,6 +100,7 @@ function site_core_load_modules()
 {
     $modules = array(
         SITE_CORE_DIR . '/page-builder.php',
+        SITE_CORE_DIR . '/navigation-links.php',
         SITE_CORE_DIR . '/hydrate-api.php',
         SITE_CORE_DIR . '/restrictions.php',
     );

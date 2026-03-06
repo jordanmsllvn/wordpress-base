@@ -15,99 +15,99 @@ show_tool_install_hint() {
 
   if command -v apt-get >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • Ubuntu/Debian: sudo apt-get update && sudo apt-get install -y unzip"
-        ;;
-      curl|wget)
-        echo "  • Ubuntu/Debian: sudo apt-get update && sudo apt-get install -y $tool"
-        ;;
-      *)
-        echo "  • Ubuntu/Debian: use your package manager to install $tool"
-        ;;
+    unzip)
+      echo "  • Ubuntu/Debian: sudo apt-get update && sudo apt-get install -y unzip"
+      ;;
+    curl | wget)
+      echo "  • Ubuntu/Debian: sudo apt-get update && sudo apt-get install -y $tool"
+      ;;
+    *)
+      echo "  • Ubuntu/Debian: use your package manager to install $tool"
+      ;;
     esac
   elif command -v dnf >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • Fedora/RHEL (dnf): sudo dnf install -y unzip"
-        ;;
-      curl|wget)
-        echo "  • Fedora/RHEL (dnf): sudo dnf install -y $tool"
-        ;;
-      *)
-        echo "  • Fedora/RHEL (dnf): use your package manager to install $tool"
-        ;;
+    unzip)
+      echo "  • Fedora/RHEL (dnf): sudo dnf install -y unzip"
+      ;;
+    curl | wget)
+      echo "  • Fedora/RHEL (dnf): sudo dnf install -y $tool"
+      ;;
+    *)
+      echo "  • Fedora/RHEL (dnf): use your package manager to install $tool"
+      ;;
     esac
   elif command -v yum >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • RHEL/CentOS (yum): sudo yum install -y unzip"
-        ;;
-      curl|wget)
-        echo "  • RHEL/CentOS (yum): sudo yum install -y $tool"
-        ;;
-      *)
-        echo "  • RHEL/CentOS (yum): use your package manager to install $tool"
-        ;;
+    unzip)
+      echo "  • RHEL/CentOS (yum): sudo yum install -y unzip"
+      ;;
+    curl | wget)
+      echo "  • RHEL/CentOS (yum): sudo yum install -y $tool"
+      ;;
+    *)
+      echo "  • RHEL/CentOS (yum): use your package manager to install $tool"
+      ;;
     esac
   elif command -v zypper >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • openSUSE: sudo zypper install -y unzip"
-        ;;
-      curl|wget)
-        echo "  • openSUSE: sudo zypper install -y $tool"
-        ;;
-      *)
-        echo "  • openSUSE: use your package manager to install $tool"
-        ;;
+    unzip)
+      echo "  • openSUSE: sudo zypper install -y unzip"
+      ;;
+    curl | wget)
+      echo "  • openSUSE: sudo zypper install -y $tool"
+      ;;
+    *)
+      echo "  • openSUSE: use your package manager to install $tool"
+      ;;
     esac
   elif command -v pacman >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • Arch/Manjaro: sudo pacman -S --noconfirm unzip"
-        ;;
-      curl|wget)
-        echo "  • Arch/Manjaro: sudo pacman -S --noconfirm $tool"
-        ;;
-      *)
-        echo "  • Arch/Manjaro: use your package manager to install $tool"
-        ;;
+    unzip)
+      echo "  • Arch/Manjaro: sudo pacman -S --noconfirm unzip"
+      ;;
+    curl | wget)
+      echo "  • Arch/Manjaro: sudo pacman -S --noconfirm $tool"
+      ;;
+    *)
+      echo "  • Arch/Manjaro: use your package manager to install $tool"
+      ;;
     esac
   elif command -v apk >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • Alpine: sudo apk add unzip"
-        ;;
-      curl|wget)
-        echo "  • Alpine: sudo apk add $tool"
-        ;;
-      *)
-        echo "  • Alpine: use your package manager to install $tool"
-        ;;
+    unzip)
+      echo "  • Alpine: sudo apk add unzip"
+      ;;
+    curl | wget)
+      echo "  • Alpine: sudo apk add $tool"
+      ;;
+    *)
+      echo "  • Alpine: use your package manager to install $tool"
+      ;;
     esac
   elif command -v brew >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • macOS: brew install unzip"
-        ;;
-      curl|wget)
-        echo "  • macOS: brew install $tool"
-        ;;
-      *)
-        echo "  • macOS: brew install $tool"
-        ;;
+    unzip)
+      echo "  • macOS: brew install unzip"
+      ;;
+    curl | wget)
+      echo "  • macOS: brew install $tool"
+      ;;
+    *)
+      echo "  • macOS: brew install $tool"
+      ;;
     esac
   elif command -v xbps-install >/dev/null 2>&1; then
     case "$tool" in
-      unzip)
-        echo "  • Void Linux: sudo xbps-install -S unzip"
-        ;;
-      curl|wget)
-        echo "  • Void Linux: sudo xbps-install -S $tool"
-        ;;
-      *)
-        echo "  • Void Linux: use your package manager to install $tool"
-        ;;
+    unzip)
+      echo "  • Void Linux: sudo xbps-install -S unzip"
+      ;;
+    curl | wget)
+      echo "  • Void Linux: sudo xbps-install -S $tool"
+      ;;
+    *)
+      echo "  • Void Linux: use your package manager to install $tool"
+      ;;
     esac
   else
     echo "  • Install $tool using your OS package manager."

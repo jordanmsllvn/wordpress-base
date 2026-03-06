@@ -1,4 +1,4 @@
 node_modules
 backend/wp-content/plugins/*
 !backend/wp-content/plugins/index.php
-
+.wp-env-home

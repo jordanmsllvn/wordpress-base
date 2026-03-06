@@ -7,12 +7,13 @@
     "wp:destroy": "cd backend && wp-env destroy",
     "wp:cli": "cd backend && wp-env run cli wp",
     "wp:plugin:install": "cd backend && WP_CLI=\"npx wp-env run cli wp\" ./install_plugins.sh",
+    "wp:set-admin-password": "cd backend && WP_CLI=\"npx wp-env run cli wp\" ./set-admin-password.sh",
     "wp:plugins": " ./scripts/plugins.sh",
     "wp:plugin:list": "cd backend && wp-env run cli wp plugin list",
     "wp:db:reset": "cd backend && wp-env run cli wp db reset --yes",
     "wp:page:create": "cd backend && wp-env run cli wp post create --post_type=page --post_title='Home' --post_status=publish",
     "wp:migrate": "cd backend && wp-env run cli wp site migrate",
-    "setup": "npm run wp:start && npm run wp:plugin:install"
+    "setup": "npm run wp:start && npm run wp:plugin:install && npm run wp:set-admin-password"
   },
   "devDependencies": {
     "@wordpress/env": "^10.0.0"

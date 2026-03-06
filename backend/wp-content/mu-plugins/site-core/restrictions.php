@@ -9,11 +9,16 @@ add_action('admin_menu', function () {
     remove_menu_page('edit-comments.php');
     remove_menu_page('tools.php');
     remove_menu_page('edit.php');
+    remove_submenu_page('options-general.php', 'options-discussion.php');
 
     global $menu;
     foreach ($menu as $key => $item) {
         if ($item[2] === 'edit.php?post_type=page') {
             $menu[$key][0] = 'Content';
+        }
+
+        if ($item[2] === 'upload.php') {
+            $menu[$key][0] = 'Media Library';
         }
     }
 });
@@ -22,6 +27,20 @@ add_action(
 	'admin_bar_menu',
 	function ( $wp_admin_bar ) {
 		$wp_admin_bar->remove_node( 'comments' );
+	},
+	999
+);
+
+add_action(
+	'admin_bar_menu',
+	function ( $wp_admin_bar ) {
+		$wp_admin_bar->remove_node( 'new-post' );
+
+		$new_content_node = $wp_admin_bar->get_node( 'new-content' );
+		if ( $new_content_node ) {
+			$new_content_node->href = admin_url( 'post-new.php?post_type=page' );
+			$wp_admin_bar->add_node( $new_content_node );
+		}
 	},
 	999
 );
@@ -58,6 +77,49 @@ add_action('admin_init', function () {
             remove_post_type_support($post_type, 'trackbacks');
         }
     }
+});
+
+add_action('add_meta_boxes', function (): void {
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+
+    if (! $screen || 'post' !== $screen->base || 'page' !== $screen->post_type) {
+        return;
+    }
+
+    remove_meta_box('commentstatusdiv', 'page', 'normal');
+    remove_meta_box('commentsdiv', 'page', 'normal');
+    remove_meta_box('trackbacksdiv', 'page', 'normal');
+});
+
+add_action('admin_head', function (): void {
+    $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+
+    if (!$screen || 'page' !== $screen->post_type || ! in_array($screen->base, ['post', 'post-new'], true)) {
+        return;
+    }
+
+    ?>
+    <script>
+        (function () {
+            var hidePageBuilderHandleActions = function () {
+                var boxes = document.querySelectorAll('.postbox');
+                boxes.forEach(function (box) {
+                    var title = box.querySelector('.hndle');
+                    if (title && title.textContent.trim() === 'Page Builder') {
+                        var handleActions = box.querySelector('.handle-actions');
+                        if (handleActions) {
+                            handleActions.style.display = 'none';
+                        }
+                    }
+                });
+            };
+
+            hidePageBuilderHandleActions();
+            document.addEventListener('DOMContentLoaded', hidePageBuilderHandleActions);
+            document.addEventListener('postbox-toggled', hidePageBuilderHandleActions);
+        })();
+    </script>
+    <?php
 });
 
 // remove update nags
