@@ -1,10 +1,10 @@
 {
+  "phpVersion": "8.2",
   "core": "WordPress/WordPress",
   "mappings": {
     "wp-content/plugins": "./wp-content/plugins",
     "wp-content/mu-plugins": "./wp-content/mu-plugins",
-    "wp-content/themes": "./wp-content/themes",
-    "wp-content/uploads": "./wp-content/uploads"
+    "wp-content/themes": "./wp-content/themes"
   },
   "config": {
     "WP_DEBUG": true,

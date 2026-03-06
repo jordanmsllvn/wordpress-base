@@ -16,15 +16,15 @@ add_action('admin_menu', function () {
             $menu[$key][0] = 'Content';
         }
     }
-  });
 });
 
-add_action('admin_bar_menu', function ($wp_admin_bar) {
-
-    $wp_admin_bar->remove_node('wp-logo');
-    $wp_admin_bar->remove_node('comments');
-
-}, 999);
+add_action(
+	'admin_bar_menu',
+	function ( $wp_admin_bar ) {
+		$wp_admin_bar->remove_node( 'comments' );
+	},
+	999
+);
 
 add_action('wp_dashboard_setup', function () {
 
@@ -37,6 +37,7 @@ add_action('wp_dashboard_setup', function () {
 
 add_action('init', function () {
     remove_theme_support('core-block-patterns');
+    remove_post_type_support('page', 'editor');
 });
 
 //nuke comments completely

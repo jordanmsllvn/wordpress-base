@@ -40,7 +40,7 @@ function site_core_load_modules()
     $modules = array(
         SITE_CORE_DIR . '/page-builder.php',
         SITE_CORE_DIR . '/hydrate-api.php',
-        SITE_CORE_DIR . '/resstrictions.php',
+        SITE_CORE_DIR . '/restrictions.php',
     );
 
     foreach ($modules as $module_path) {
