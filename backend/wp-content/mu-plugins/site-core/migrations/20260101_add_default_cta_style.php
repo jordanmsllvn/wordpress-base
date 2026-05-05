@@ -8,10 +8,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-return static function () {
-	$option_name = 'site_core_default_cta_style';
+return array(
+	'up' => static function () {
+		$option_name = 'site_core_default_cta_style';
 
-	if ( false === get_option( $option_name, false ) ) {
-		add_option( $option_name, 'primary', '', false );
-	}
-};
+		if ( false === get_option( $option_name, false ) ) {
+			add_option( $option_name, 'primary', '', false );
+		}
+	},
+	'down' => static function () {
+		delete_option( 'site_core_default_cta_style' );
+	},
+);
